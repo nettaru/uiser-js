@@ -9,9 +9,8 @@
  *    <https://webpack.js.org/configuration/>
  */
 
-const {src, dirs, dest} = require('./webpack/paths');
+const {src, dest} = require('./webpack/paths');
 const rules = require('./webpack/rules');
-const plugins = require('./webpack/plugins');
 
 module.exports = {
   //  Enables Webpack optimizations for `development` or `production` modes.
@@ -23,15 +22,12 @@ module.exports = {
   //  Entry points of the application. Vendor libraries (e.g.: Phaser) are
   //  declared first to become available globally.
   entry: {
-    app: [dirs.scripts],
+    index: `${src}/index.js`,
   },
 
   //  Options instructing Webpack how and where to write compiled bundles.
   output: {
-    filename:
-      // env === 'production' ?
-      //   '[name]-[chunkhash].bundle.js' :
-        '[name].bundle.js',
+    filename: '[name].bundle.js',
     path: dest,
     publicPath: '/'
   },
@@ -44,7 +40,7 @@ module.exports = {
 
     alias: {
       //  For convenience, makes '@' an alias of the source directory.
-      '@': dirs.scripts
+      '@': src
     }
   },
 
@@ -53,10 +49,6 @@ module.exports = {
   module: {
     rules
   },
-
-  //  Plugins used during bundle processing. Check the `plugins.js` module to
-  //  see which and how plugins are configured.
-  plugins: plugins('development'),
 
   //  Defines the type of source maps written in each compilation mode.
   devtool: 'eval-source-map',
