@@ -11,6 +11,7 @@
 
 const {src, dest} = require('./webpack/paths');
 const rules = require('./webpack/rules');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   //  Enables Webpack optimizations for `development` or `production` modes.
@@ -19,10 +20,14 @@ module.exports = {
   //  The base path where to resolve entry points.
   context: src,
 
+  plugins: [
+    new CleanWebpackPlugin()
+  ],
+
   //  Entry points of the application. Vendor libraries (e.g.: Phaser) are
   //  declared first to become available globally.
   entry: {
-    index: `${src}/index.js`,
+    module: `${src}/index.js`,
   },
 
   //  Options instructing Webpack how and where to write compiled bundles.
@@ -50,11 +55,10 @@ module.exports = {
     rules
   },
 
-  //  Defines the type of source maps written in each compilation mode.
-  devtool: 'eval-source-map',
-
   //  Turn performance hints off.
   performance: {
     hints: false
-  }
+  },
+
+  devtool: 'inline-source-map',
 };
