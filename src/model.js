@@ -11,9 +11,12 @@ import { createNestedElement } from './utils';
 **/
 export default class UIModel {
   constructor (id, tag = 'div') {
-    this.id = id;
+    if (id) {
+      this.id = id;
+      this.attributes = { id };
+    }
     this.tag = tag;
-    this.attributes = id ? { id } : {};
+    this.attributes ||= {};
     this.element = null;
   }
 

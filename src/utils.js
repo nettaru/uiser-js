@@ -29,7 +29,3 @@ export function createNestedElement (structure) {
   parentElement.append(...structure.children);
   return parentElement;
 };
-
-export function getLast (array) {
-  return array[array.length - 1];
-};

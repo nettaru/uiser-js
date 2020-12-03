@@ -1,9 +1,8 @@
 import UIModel from './model';
-import { createNestedElement, domElementFromDescription, getLast } from './utils';
+import { createNestedElement, domElementFromDescription } from './utils';
 
 export {
   UIModel,
   createNestedElement,
-  domElementFromDescription,
-  getLast 
+  domElementFromDescription
 }
